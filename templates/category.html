@@ -1,0 +1,381 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <main class="main">
+        	<div class="page-header text-center" style="background-image: url('{% static "assets/images/page-header-bg.jpg"%}')">
+        		<div class="container">
+        			<h1 class="page-title">Shop <span></span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+       
+            <div class="page-content">
+                <div class="container">
+                	<div class="row">
+                		<div class="col-lg-9">
+                			<div class="toolbox">
+                				<div class="toolbox-left">
+                					<div class="toolbox-info">
+                						<!-- Showing <span>9 of 56</span> Products -->
+                					</div><!-- End .toolbox-info -->
+                				</div><!-- End .toolbox-left -->
+
+                				<div class="toolbox-right">
+                					<div class="toolbox-sort">
+                						<label for="sortby">Sort by:</label>
+                						<div class="dropdown select-custom ">
+											<button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="icon-list-alt"></i>Select Options
+											</button>
+		<style>
+			.kp{
+				height:35px;
+				font-size:15px;
+			}
+		</style>
+											<div class="dropdown-menu select-custom">
+											
+												<a class="dropdown-item kp" href="/lowtohigh/{{url}}">Prices Low to High</a>
+												
+												<a class="dropdown-item kp" href="/hightolow/{{url}}">Prices High to Low</a>
+												<!-- <a class="dropdown-item" href="/#">The best option</a> -->
+											  </div>
+											</div>
+                					</div><!-- End .toolbox-sort -->
+                					
+                				</div><!-- End .toolbox-right -->
+                			</div><!-- End .toolbox -->
+<style>
+    .same{
+        height:175px;
+    }
+</style>
+                            <div class="products mb-3">
+                                <div class="row justify-content-center">
+                             
+{% for prod in products%}
+                                    <div class="col-6 col-md-4 col-lg-4 mx-6">
+                                        <div class="product product-7 text-center">
+                                            <figure class="product-media">
+                                                <a href="/productdetail/{{prod.id}}">
+                                                <img src="{%static prod.product_image.url %}" alt="Product image" class="product-image same">
+                                                    <!-- <img src="data:image/jpeg;base64,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" alt="Product image" class="product-image"> -->
+                                                </a>
+
+                                                <div class="product-action-vertical">
+                                                    <a href="/add-to-wishlist/{{prod.id}}" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to wishlist</span></a>
+                                                    <!-- <a href="/popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a> -->
+                                                    <!-- <a href="/#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a> -->
+                                                </div><!-- End .product-action-vertical -->
+
+                                                <div class="product-action">
+                                                    <a href="/add-to-cart/{{prod.id}}" class="btn-product btn-cart" title="Add to cart"><span>Add to cart</span></a>
+                                                </div><!-- End .product-action -->
+                                            </figure><!-- End .product-media -->
+
+                                            <div class="product-body">
+                                                <div class="product-cat">
+                                                    <a href="/#">{{prod.tag1}}    {{prod.tag2}}</a>
+                                                </div><!-- End .product-cat -->
+                                                <style>
+                                                    .jj{
+                                                        color:orange;
+                                                    }
+                                                </style>
+                                                <h3 class="product-title"><a href="/productdetail/{{prod.id}}"+prod.id>{{prod.name}}</a></h3><!-- End .product-title -->
+                                                <div class="product-price jj">
+                                               Rs. {{prod.price}}
+                                                </div><!-- End .product-price
+                                                 <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 0%;"></div> End .ratings-val 
+                                                    </div> End .ratings
+                                                    <span class="ratings-text">( 0 Reviews )</span>
+                                                </div>End .rating-container -->
+
+                                                <!-- <div class="product-nav product-nav-thumbs">
+                                                    <a href="/#" class="active">
+                                                        <img src="{% static "assets/images/products/product-5-thumb.jpg"%}" alt="product desc">
+                                                    </a>
+                                                    <a href="/#">
+                                                        <img src="{% static "assets/images/products/product-5-2-thumb.jpg"%}" alt="product desc">
+                                                    </a>
+                                                </div>End .product-nav -->
+                                            </div><!-- End .product-body -->
+                                        </div><!-- End .product -->
+                                    </div>
+                                 <!-- End .col-sm-6 col-lg-4 -->
+{%endfor%}
+                          <!-- End .col-sm-6 col-lg-4 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .products -->
+
+                			<nav aria-label="Page navigation">
+							    <ul class="pagination justify-content-center">
+							        <li class="page-item disabled">
+							            <a class="page-link page-link-prev" href="/#" aria-label="Previous" tabindex="-1" aria-disabled="true">
+							                <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+							            </a>
+							        </li>
+							        <li class="page-item active" aria-current="page"><a class="page-link" href="/#">1</a></li>
+							        <li class="page-item"><a class="page-link" href="/#">2</a></li>
+							        <li class="page-item"><a class="page-link" href="/#">3</a></li>
+							        <li class="page-item-total">of 6</li>
+							        <li class="page-item">
+							            <a class="page-link page-link-next" href="/#" aria-label="Next">
+							                Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+							            </a>
+							        </li>
+							    </ul>
+							</nav>
+                		</div><!-- End .col-lg-9 -->
+                		<aside class="col-lg-3 order-lg-first">
+                			<div class="sidebar sidebar-shop">
+                				<div class="widget widget-clean">
+                					<!-- <label>Filters:</label> -->
+                					<!-- <a href="/#" class="sidebar-filter-clear">Clean All</a> -->
+                				</div><!-- End .widget widget-clean -->
+                               
+                				<div class="widget widget-collapsible">
+    								<h3 class="widget-title">
+									    <!-- <a data-toggle="collapse" href="/#widget-1" role="button" aria-expanded="true" aria-controls="widget-1"> -->
+									        Category
+									    <!-- </a> -->
+									</h3><!-- End .widget-title -->
+
+									<div class="collapse show" id="widget-1">
+										<div class="widget-body">
+											<div class="filter-items filter-items-count">
+												<div class="filter-item">
+													<div class="custom-control ">
+														<!-- <input type="checkbox" class="custom-control-input" id="cat-1"> -->
+														<a href="/producttshirt"><label class="custom-control-label" for="cat-1">Dresses</label></a>
+													</div><!-- End .custom-checkbox -->
+													<!-- <span class="item-count">3</span> -->
+												</div><!-- End .filter-item -->
+
+												<div class="filter-item">
+													<div class="custom-control">
+														<a href="/producthoodie"><label class="custom-control-label" for="cat-2">Hoodie</label></a>
+													</div><!-- End .custom-checkbox -->
+													<!-- <span class="item-count">0</span> -->
+												</div><!-- End .filter-item -->
+
+												<div class="filter-item">
+													<div class="custom-control">
+														<a href="/productbracelet"><label class="custom-control-label" for="cat-3">Bracelet</label></a>
+													</div><!-- End .custom-checkbox -->
+													<!-- <span class="item-count">4</span> -->
+												</div><!-- End .filter-item -->
+
+												<div class="filter-item">
+													<div class="custom-control ">
+														<a href="/productartistic"><label class="custom-control-label" for="cat-4">Artistic</label></a>
+													</div><!-- End .custom-checkbox -->
+													<!-- <span class="item-count">2</span> -->
+												</div><!-- End .filter-item -->
+
+												<div class="filter-item">
+													<div class="custom-control ">
+														<a href="/productcap"><label class="custom-control-label" for="cat-5">Cap</label></a>
+													</div><!-- End .custom-checkbox -->
+													<!-- <span class="item-count">2</span> -->
+												</div><!-- End .filter-item -->
+
+												<div class="filter-item">
+													<div class="custom-control ">
+														<a href="/products"><label class="custom-control-label" for="cat-6">Others</label></a>
+													</div><!-- End .custom-checkbox -->
+													<!-- <span class="item-count">1</span> -->
+												</div><!-- End .filter-item -->
+
+												
+												
+											</div><!-- End .filter-items -->
+										</div><!-- End .widget-body -->
+									</div><!-- End .collapse -->
+        						</div><!-- End .widget -->
+<!-- 
+        				<style>
+							
+.card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 9px 20px 0px rgba(14, 88, 48, 0.1);
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.price-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+.range-slider {
+  width: 100%;
+  position: relative;
+  margin: 15px 0 30px 0;
+}
+
+.range-fill {
+  height: 6px;
+  background-color: #36b37e;
+  position: absolute;
+  z-index: 1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  left: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #36b37e;
+  cursor: pointer;
+  margin-top: -5px;
+  position: relative;
+  z-index: 1;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  border: none;
+}
+						</style> -->
+								  <!-- <script>
+			
+									let minValue = document.getElementById("min-value");
+						let maxValue = document.getElementById("max-value");
+						
+						const rangeFill = document.querySelector(".range-fill");
+						
+						// Function to validate range and update the fill color on slider
+						function validateRange() {
+						let minPrice = parseInt(inputElements[0].value);
+						let maxPrice = parseInt(inputElements[1].value);
+						
+						if (minPrice > maxPrice) {
+						let tempValue = maxPrice;
+						maxPrice = minPrice;
+						minPrice = tempValue;
+						}
+						
+						const minPercentage = ((minPrice - 10) / 490) * 100;
+						const maxPercentage = ((maxPrice - 10) / 490) * 100;
+						
+						rangeFill.style.left = minPercentage + "%";
+						rangeFill.style.width = maxPercentage - minPercentage + "%";
+						
+						minValue.innerHTML = "$" + minPrice;
+						maxValue.innerHTML = "$" + maxPrice;
+						}
+						
+						const inputElements = document.querySelectorAll(".jjl");
+						alert(inputElements.length)
+						// Add an event listener to each input element
+						inputElements.forEach((element) => {
+						element.addEventListener(".jjl", validateRange);
+						});
+						
+						// Initial call to validateRange
+						validateRange();
+								</script>  -->
+        						<div class="widget widget-collapsible">
+    								<h3 class="widget-title">
+									    <!-- <a data-toggle="collapse" href="/#widget-3" role="button" aria-expanded="true" aria-controls="widget-3"> -->
+									        <!-- Colour -->
+									    </a>
+									</h3><!-- End .widget-title -->
+
+									<div class="collapse show" id="widget-3">
+										<div class="widget-body">
+											<!-- <div class="card">
+												<h4>Price Range Slider</h4>
+										  
+												<div class="price-content">
+												  <div>
+													<label>Min</label>
+													<p id="min-value">$50</p>
+												  </div>
+										  
+												  <div>
+													<label>Max</label>
+													<p id="max-value">$500</p>
+												  </div>
+												</div>
+										  
+												<div class="range-slider">
+												  <div class="range-fill"></div>
+										  
+												  <input
+													type="range"
+													class="jjl "
+													value="100"
+													min="10"
+													max="500"
+													step="10"
+												  />
+												  <input
+													type="range"
+													class="jjl "
+													value="250"
+													min="10"
+													max="500"
+													step="10"
+												  />
+												</div>
+											  </div>
+								 -->
+											<!-- <div class="filter-colors"> -->
+												<!-- <a href="/#" style="background: #b87145;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" style="background: #f0c04a;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" style="background: #333333;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" class="selected" style="background: #cc3333;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" style="background: #3399cc;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" style="background: #669933;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" style="background: #f2719c;"><span class="sr-only">Color Name</span></a>
+												<a href="/#" style="background: #ebebeb;"><span class="sr-only">Color Name</span></a>
+											</div> -->
+
+											<!-- End .filter-colors -->
+										</div><!-- End .widget-body -->
+									</div><!-- End .collapse -->
+        						</div><!-- End .widget -->
+
+        						
+                			</div><!-- End .sidebar sidebar-shop -->
+                		</aside><!-- End .col-lg-3 -->
+                	</div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+		
+        {% endblock content%}
+	
